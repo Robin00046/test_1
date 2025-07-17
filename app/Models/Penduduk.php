@@ -9,4 +9,17 @@ class Penduduk extends Model
 {
     /** @use HasFactory<\Database\Factories\PendudukFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'nama',
+        'alamat',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'kabupaten_id',
+    ];
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
 }

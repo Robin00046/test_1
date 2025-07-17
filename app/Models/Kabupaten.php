@@ -9,4 +9,19 @@ class Kabupaten extends Model
 {
     /** @use HasFactory<\Database\Factories\KabupatenFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'nama',
+        'provinsi_id',
+    ];
+
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
+
+    public function penduduk()
+    {
+        return $this->hasMany(Penduduk::class);
+    }
 }
