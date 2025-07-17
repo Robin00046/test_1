@@ -13,7 +13,9 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        //
+        // This method should return a list of Provinsi resources.
+        $provinsis = Provinsi::all();
+        return view('provinsi.index', compact('provinsis'));
     }
 
     /**
@@ -21,7 +23,8 @@ class ProvinsiController extends Controller
      */
     public function create()
     {
-        //
+        // This method should show the form for creating a new Provinsi resource.
+        return view('provinsi.create');
     }
 
     /**
@@ -29,7 +32,9 @@ class ProvinsiController extends Controller
      */
     public function store(StoreProvinsiRequest $request)
     {
-        //
+        // This method should handle the storage of a new Provinsi resource.
+        $provinsi = Provinsi::create($request->validated());
+        return redirect()->route('provinsi.index')->with('success', 'Provinsi created successfully');
     }
 
     /**
@@ -37,7 +42,8 @@ class ProvinsiController extends Controller
      */
     public function show(Provinsi $provinsi)
     {
-        //
+        // This method should display a specific Provinsi resource.
+        return view('provinsi.show', compact('provinsi'));
     }
 
     /**
@@ -45,7 +51,8 @@ class ProvinsiController extends Controller
      */
     public function edit(Provinsi $provinsi)
     {
-        //
+        // This method should show the form for editing a specific Provinsi resource.
+        return view('provinsi.edit', compact('provinsi'));
     }
 
     /**
@@ -53,7 +60,9 @@ class ProvinsiController extends Controller
      */
     public function update(UpdateProvinsiRequest $request, Provinsi $provinsi)
     {
-        //
+        // This method should handle the update of a specific Provinsi resource.
+        $provinsi->update($request->validated());
+        return redirect()->route('provinsi.index')->with('success', 'Provinsi updated successfully');
     }
 
     /**
@@ -61,6 +70,8 @@ class ProvinsiController extends Controller
      */
     public function destroy(Provinsi $provinsi)
     {
-        //
+        // This method should handle the deletion of a specific Provinsi resource.
+        $provinsi->delete();
+        return redirect()->route('provinsi.index')->with('success', 'Provinsi deleted successfully');
     }
 }

@@ -17,7 +17,10 @@ class ProvinsiFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // Define the default state for the Provinsi model
+            'nama' => $this->faker->state, // Generate a random state name
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

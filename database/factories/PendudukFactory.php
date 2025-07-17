@@ -18,6 +18,14 @@ class PendudukFactory extends Factory
     {
         return [
             //
+            'nama' => $this->faker->name,
+            'alamat' => $this->faker->address,
+            'tanggal_lahir' => $this->faker->date(),
+            'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
+            'kabupaten_id' => \App\Models\Kabupaten::factory(), // Assuming you
+            // have a Kabupaten factory to create related Kabupaten records
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

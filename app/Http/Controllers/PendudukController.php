@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
+use App\Models\Kabupaten;
 use App\Http\Requests\StorePendudukRequest;
 use App\Http\Requests\UpdatePendudukRequest;
 
@@ -13,7 +14,9 @@ class PendudukController extends Controller
      */
     public function index()
     {
-        //
+        // This method should return a list of Penduduk resources.
+        $penduduks = Penduduk::with('kabupaten')->get();
+        return view('penduduk.index', compact('penduduks'));
     }
 
     /**
@@ -21,7 +24,9 @@ class PendudukController extends Controller
      */
     public function create()
     {
-        //
+        // This method should show the form for creating a new Penduduk resource.
+        $kabupatens = Kabupaten::all();
+        return view('penduduk.create', compact('kabupatens'));
     }
 
     /**
@@ -29,7 +34,9 @@ class PendudukController extends Controller
      */
     public function store(StorePendudukRequest $request)
     {
-        //
+        // This method should handle the storage of a new Penduduk resource.
+        $penduduk = Penduduk::create($request->validated());
+        return redirect()->route('penduduk.index')->with('success', 'Penduduk created successfully');
     }
 
     /**
@@ -37,7 +44,8 @@ class PendudukController extends Controller
      */
     public function show(Penduduk $penduduk)
     {
-        //
+        // This method should display a specific Penduduk resource.
+        return view('penduduk.show', compact('penduduk'));
     }
 
     /**
@@ -45,7 +53,9 @@ class PendudukController extends Controller
      */
     public function edit(Penduduk $penduduk)
     {
-        //
+        // This method should show the form for editing a specific Penduduk resource.
+        $kabupatens = Kabupaten::all();
+        return view('penduduk.edit', compact('penduduk', 'kabupatens'));
     }
 
     /**
@@ -53,7 +63,9 @@ class PendudukController extends Controller
      */
     public function update(UpdatePendudukRequest $request, Penduduk $penduduk)
     {
-        //
+        // This method should handle the update of a specific Penduduk resource.
+        $penduduk->update($request->validated());
+        return redirect()->route('penduduk.index')->with('success', 'Penduduk updated successfully');
     }
 
     /**
@@ -61,6 +73,8 @@ class PendudukController extends Controller
      */
     public function destroy(Penduduk $penduduk)
     {
-        //
+        // This method should handle the deletion of a specific Penduduk resource.
+        $penduduk->delete();
+        return redirect()->route('penduduk.index')->with('success', 'Penduduk deleted successfully');
     }
 }

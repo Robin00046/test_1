@@ -11,7 +11,7 @@ class StoreKabupatenRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // Adjust this based on your authorization logic
     }
 
     /**
@@ -23,6 +23,8 @@ class StoreKabupatenRequest extends FormRequest
     {
         return [
             //
+            'nama' => 'required|string|max:255',
+            'provinsi_id' => 'required|exists:provinsis,id',
         ];
     }
 }
