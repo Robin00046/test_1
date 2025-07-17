@@ -19,7 +19,8 @@ class KabupatenFactory extends Factory
         return [
             //
             'nama' => $this->faker->city,
-            'provinsi_id' => \App\Models\Provinsi::factory(), // Assuming you
+            // provinssi id hanya 1-10
+            'provinsi_id' => $this->faker->numberBetween(1, 5), // Assuming you have 10 Provinsi records
             // have a Provinsi factory to create related Provinsi records
             'created_at' => now(),
             'updated_at' => now(),

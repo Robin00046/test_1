@@ -22,7 +22,7 @@ class PendudukFactory extends Factory
             'alamat' => $this->faker->address,
             'tanggal_lahir' => $this->faker->date(),
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
-            'kabupaten_id' => \App\Models\Kabupaten::factory(), // Assuming you
+            'kabupaten_id' => $this->faker->numberBetween(1, 10), // Assuming you have 10 Kabupaten records;
             // have a Kabupaten factory to create related Kabupaten records
             'created_at' => now(),
             'updated_at' => now(),

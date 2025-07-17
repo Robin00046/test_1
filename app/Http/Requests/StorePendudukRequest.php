@@ -11,7 +11,7 @@ class StorePendudukRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // You can add your authorization logic here if needed
     }
 
     /**
@@ -23,6 +23,11 @@ class StorePendudukRequest extends FormRequest
     {
         return [
             //
+            'nama' => 'required|string|max:255', // Assuming 'nama' is a string field
+            'alamat' => 'required|string|max:255', // Assuming 'alamat' is a string field
+            'tanggal_lahir' => 'required|date', // Assuming 'tanggal_lahir' is a date field
+            'jenis_kelamin' => 'required', // Assuming 'jenis_kelamin' can be either 'Laki-laki' or 'Perempuan'
+            'kabupaten_id' => 'required|exists:kabupatens,id', // Assuming 'kabupaten_id' is a foreign key referencing the 'kab
         ];
     }
 }

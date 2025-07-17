@@ -44,8 +44,9 @@ class KabupatenController extends Controller
      */
     public function show(Kabupaten $kabupaten)
     {
+        $provinsis = Provinsi::all();
         // This method should display a specific Kabupaten resource.
-        return view('kabupaten.show', compact('kabupaten'));
+        return view('kabupaten.show', compact('kabupaten', 'provinsis'));
     }
 
     /**
@@ -81,8 +82,10 @@ class KabupatenController extends Controller
     // get provinsi by id
     public function getKabupatenByProvinsiId($provinsiId)
     {
+        // dd($provinsiId);
         // This method should return a list of Kabupaten resources filtered by Provinsi ID.
         $kabupatens = Kabupaten::where('provinsi_id', $provinsiId)->get();
+        // dd($kabupatens);
         return response()->json($kabupatens);
     }
 }

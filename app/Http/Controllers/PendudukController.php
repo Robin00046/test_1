@@ -6,6 +6,7 @@ use App\Models\Penduduk;
 use App\Models\Kabupaten;
 use App\Http\Requests\StorePendudukRequest;
 use App\Http\Requests\UpdatePendudukRequest;
+use App\Models\Provinsi;
 
 class PendudukController extends Controller
 {
@@ -16,6 +17,7 @@ class PendudukController extends Controller
     {
         // This method should return a list of Penduduk resources.
         $penduduks = Penduduk::with('kabupaten')->get();
+        // dd($penduduks[0]);
         return view('penduduk.index', compact('penduduks'));
     }
 
@@ -25,8 +27,8 @@ class PendudukController extends Controller
     public function create()
     {
         // This method should show the form for creating a new Penduduk resource.
-        $kabupatens = Kabupaten::all();
-        return view('penduduk.create', compact('kabupatens'));
+        $provinsis = Provinsi::all();
+        return view('penduduk.create', compact('provinsis'));
     }
 
     /**
@@ -54,8 +56,9 @@ class PendudukController extends Controller
     public function edit(Penduduk $penduduk)
     {
         // This method should show the form for editing a specific Penduduk resource.
+        $provinsis = Provinsi::all();
         $kabupatens = Kabupaten::all();
-        return view('penduduk.edit', compact('penduduk', 'kabupatens'));
+        return view('penduduk.edit', compact('penduduk', 'kabupatens', 'provinsis'));
     }
 
     /**
@@ -63,6 +66,7 @@ class PendudukController extends Controller
      */
     public function update(UpdatePendudukRequest $request, Penduduk $penduduk)
     {
+        // dd($request->all());
         // This method should handle the update of a specific Penduduk resource.
         $penduduk->update($request->validated());
         return redirect()->route('penduduk.index')->with('success', 'Penduduk updated successfully');

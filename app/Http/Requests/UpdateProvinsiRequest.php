@@ -11,7 +11,7 @@ class UpdateProvinsiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // You can add your authorization logic here if needed
     }
 
     /**
@@ -23,6 +23,7 @@ class UpdateProvinsiRequest extends FormRequest
     {
         return [
             //
+            'nama' => 'required|string|max:255', // Assuming 'nama' is a string field
         ];
     }
 }
